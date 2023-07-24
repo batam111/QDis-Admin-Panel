@@ -1,0 +1,48 @@
+{% extends "dashBoard.html" %}
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/table_template.css') }}">
+    <title>Qthis - Admin panel</title>
+</head>
+
+{% include "adminNavBar.html" %}
+
+{% block content %}
+<h2>Quthis Admin Panel - Control Everything in a click</h2>
+  <table id="data" class="table table-striped">
+    <thead>
+      <tr>
+        {% for header in headings %}
+            <th>{{header}} </th>
+            {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+        {% for user in data %}
+          
+        <tr>
+            {% for cell in user %}
+            {%- if loop.index >1 and loop.index <7 %}
+                <td>{{cell}}</td>
+                {% endif %}
+            {% endfor %}            
+            <form  action={{ table_name }} method="POST">
+              <input type="hidden" name="userKey" value ={{ user[0] }}>
+              <input type="hidden" name="hashTag" value ={{ user[1] }}>
+              <input type="hidden" name="postId" value ={{ user[3] }}>
+              <input type="hidden" name="categoryName" value ={{ user[2] }}>
+            <td><input type="submit" name="action" value="Delete"  ></input></td>
+            {%- if headings|length == 7 %}
+            {%- if user[6] %}
+            {% set muteValue = 'Unmute' %}
+            {% else %}
+            {% set muteValue = 'Mute' %}
+            {% endif %}
+            <td><input type="submit" name="action" value={{ muteValue }}  ></input></td>     
+            {% endif %}
+          </form>
+          
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

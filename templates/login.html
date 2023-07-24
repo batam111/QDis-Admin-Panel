@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+
+    <title>Qthis - Signin</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{url_for('static',filename='boostrap/bootstrap-4.3.1-dist/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{url_for('static',filename='signin.css')}}" rel="stylesheet">
+  </head>
+
+  <body onload="incorrectLoginDetails()" class="text-center" >
+    <script>
+      function incorrectLoginDetails() {
+        if ("{{incorrect_login_details}}" == "True") {
+          document.getElementById('error_message').style.display = '';
+        }
+      }
+    </script>
+    <form id="form" action="#" method="post">
+      <h1 class="h3 mb-3 font-weight-normal">PLEASE SIGN IN</h1>
+      <label for="username" class="sr-only">Username</label>
+      Username <input type ="text" name="username" id="username" class="form-control" placeholder="Email address" required autofocus>
+      <label for="password" class="sr-only">Password</label>
+      Password <input type ="password" name="password" id="password" class="form-control" placeholder="Password" required>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember mes
+        </label>
+       
+      </div>
+      <label for="incorrect_login_details" id="error_message" style="background-color: #f44336;display:none;color:white;">Incorrect Login Details</label>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" form="form">Sign In</button>
+     
+      <p class="mt-5 mb-3 text-muted">&copy; 2021-2022</p>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write(<script src="{{url_for('static',filename='boostrap/bootstrap-4.3.1-dist\js/jquery-slim.min.js')}}"/>)</script>
+    <script src="{{url_for('static',filename='boostrap/bootstrap-4.3.1-dist/js/popper.min.js')}}"></script>
+    <script src="{{url_for('static',filename='boostrap/bootstrap-4.3.1-dist/js/boostrap.min.js')}}"></script>
+  </body>
+</html>
